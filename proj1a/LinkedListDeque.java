@@ -1,11 +1,15 @@
+/** First part of project1a
+ * @author donny
+ * @param <T>
+ */
 public class LinkedListDeque<T> {
     private Node sentinel;
     private int size;
 
     public class Node {
-        public T item;
-        public Node prev;
-        public Node next;
+        private T item;
+        private Node prev;
+        private Node next;
 
         public Node(T item, Node prev, Node next) {
             this.item = item;
@@ -20,7 +24,7 @@ public class LinkedListDeque<T> {
     }
 
     public LinkedListDeque() {
-        this.sentinel = new Node(null,null);
+        this.sentinel = new Node(null, null);
         this.size = 0;
         sentinel.next = sentinel;
         sentinel.prev = sentinel;
@@ -31,7 +35,7 @@ public class LinkedListDeque<T> {
         Node newNode = new Node(item, sentinel, null);
         if (sentinel.next == null) {
             newNode.next = sentinel;
-        }else {
+        } else {
             newNode.next = sentinel.next;
             sentinel.next.prev = newNode;
         }
@@ -44,7 +48,7 @@ public class LinkedListDeque<T> {
         if (sentinel.next == null) {
             newNode.prev = sentinel;
             sentinel.next = newNode;
-        }else {
+        } else {
             newNode.prev = sentinel.prev;
             sentinel.prev.next = newNode;
             sentinel.prev = newNode;
@@ -99,7 +103,7 @@ public class LinkedListDeque<T> {
             return null;
         }
         Node temp = sentinel.next;
-        while (index != 0){
+        while (index != 0) {
             temp = temp.next;
             index -= 1;
         }
@@ -107,15 +111,15 @@ public class LinkedListDeque<T> {
     }
 
     public  T getRecursive(int index) {
-        return getR_Helper(sentinel.next, index);
+        return getRHelper(sentinel.next, index);
     }
 
-    private T getR_Helper(Node start, int index) {
+    private T getRHelper(Node start, int index) {
         if (sentinel.next == sentinel) {
             return null;
-        }else if (index == 0) {
+        } else if (index == 0) {
             return start.item;
         }
-        return getR_Helper(start.next, index-1);
+        return getRHelper(start.next, index - 1);
     }
 }

@@ -1,8 +1,13 @@
+/** Second part of project1a
+ * @author donny
+ * @param <T>
+ */
 public class ArrayDeque<T> {
     private int size;
     private T[] items;
     private int nextFirst;
     private int nextLast;
+
 
     public ArrayDeque() {
         items = (T[]) new Object[8];
@@ -23,7 +28,7 @@ public class ArrayDeque<T> {
             resize(size * 2);
         }
         items[nextFirst] = item;
-        nextFirst = (nextFirst - 1) % items.length;
+        nextFirst = minusOne(nextFirst);
         size++;
 
     }
@@ -33,7 +38,7 @@ public class ArrayDeque<T> {
             resize(size * 2);
         }
         items[nextLast] = item;
-        nextLast = (nextLast + 1) % items.length;
+        nextLast = plusOne(nextLast);
         size++;
     }
 
@@ -41,9 +46,10 @@ public class ArrayDeque<T> {
         if (size == 0) {
             return null;
         }
-        T item = items[nextFirst + 1];
-        items[nextFirst + 1] = null;
-        nextFirst = (nextFirst + 1) % items.length;
+        T item = items[plusOne(nextFirst)];
+        items[plusOne(nextFirst)] = null;
+        nextFirst = plusOne(nextFirst);
+        size--;
         decreaseSize();
         return item;
     }
@@ -52,9 +58,10 @@ public class ArrayDeque<T> {
         if (size == 0) {
             return null;
         }
-        T item = items[nextLast - 1];
-        items[nextLast - 1] = null;
-        nextLast = (nextLast - 1) % items.length;
+        T item = items[minusOne(nextLast)];
+        items[minusOne(nextLast)] = null;
+        nextLast = minusOne(nextLast);
+        size--;
         decreaseSize();
         return item;
     }
@@ -64,13 +71,16 @@ public class ArrayDeque<T> {
     }
 
     public void printDeque() {
-        for(T item : items) {
+        for (T item : items) {
             System.out.println(item);
         }
     }
 
     public T get(int index) {
-        return items[index];
+        if (index < 0 || index >= items.length) {
+            return null;
+        }
+        return items[plusOne(nextFirst) + index];
     }
 
     public int size() {
@@ -81,6 +91,21 @@ public class ArrayDeque<T> {
         while ((double) size / items.length < 0.25 && items.length >= 16) {
             resize(items.length / 2);
         }
+    }
+
+    private int minusOne(int index) {
+        if (index == 0) {
+            int len = items.length;
+            return len - 1;
+        }
+        return index - 1;
+    }
+
+    private  int plusOne(int index) {
+        if (index == items.length) {
+            return 0;
+        }
+        return index + 1;
     }
 }
 
