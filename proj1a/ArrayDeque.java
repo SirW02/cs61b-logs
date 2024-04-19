@@ -95,14 +95,13 @@ public class ArrayDeque<T> {
 
     private int minusOne(int index) {
         if (index == 0) {
-            int len = items.length;
-            return len - 1;
+            return items.length - 1;
         }
         return index - 1;
     }
 
     private  int plusOne(int index) {
-        if (index == items.length) {
+        if (index == items.length - 1) {
             return 0;
         }
         return index + 1;
