@@ -1,13 +1,13 @@
-public class LinkedListDeque<anytype> {
+public class LinkedListDeque<T> {
     private Node sentinel;
     private int size;
 
     public class Node {
-        public anytype item;
+        public T item;
         public Node prev;
         public Node next;
 
-        public Node(anytype item, Node prev, Node next) {
+        public Node(T item, Node prev, Node next) {
             this.item = item;
             this.prev = prev;
             this.next = next;
@@ -26,7 +26,7 @@ public class LinkedListDeque<anytype> {
         sentinel.prev = sentinel;
     }
 
-    public void addFirst(anytype item) {
+    public void addFirst(T item) {
         size += 1;
         Node newNode = new Node(item, sentinel, null);
         if (sentinel.next == null) {
@@ -38,7 +38,7 @@ public class LinkedListDeque<anytype> {
         sentinel.next = newNode;
     }
 
-    public void addLast(anytype item) {
+    public void addLast(T item) {
         size += 1;
         Node newNode = new Node(item, null, sentinel);
         if (sentinel.next == null) {
@@ -68,7 +68,7 @@ public class LinkedListDeque<anytype> {
         }
     }
 
-    public anytype removeFirst() {
+    public T removeFirst() {
         if (sentinel.next == sentinel) {
             return null;
         }
@@ -81,7 +81,7 @@ public class LinkedListDeque<anytype> {
         return temp.item;
     }
 
-    public anytype removeLast() {
+    public T removeLast() {
         if (sentinel.prev == sentinel) {
             return null;
         }
@@ -94,7 +94,7 @@ public class LinkedListDeque<anytype> {
         return temp.item;
     }
 
-    public anytype get(int index) {
+    public T get(int index) {
         if (sentinel.next == sentinel || index > size) {
             return null;
         }
@@ -106,11 +106,11 @@ public class LinkedListDeque<anytype> {
         return temp.item;
     }
 
-    public  anytype getRecursive(int index) {
+    public  T getRecursive(int index) {
         return getR_Helper(sentinel.next, index);
     }
 
-    private anytype getR_Helper(Node start, int index) {
+    private T getR_Helper(Node start, int index) {
         if (sentinel.next == sentinel) {
             return null;
         }else if (index == 0) {
