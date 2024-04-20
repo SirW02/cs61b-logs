@@ -30,7 +30,6 @@ public class ArrayDeque<T> {
         items[nextFirst] = item;
         nextFirst = minusOne(nextFirst);
         size++;
-
     }
 
     public void addLast(T item) {
@@ -80,7 +79,7 @@ public class ArrayDeque<T> {
         if (index < 0 || index >= items.length) {
             return null;
         }
-        return items[plusOne(nextFirst) + index];
+        return items[plusOne(nextFirst + index)];
     }
 
     public int size() {
