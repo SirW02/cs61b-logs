@@ -102,6 +102,8 @@ public class ArrayDeque<T> {
     private  int plusOne(int index) {
         if (index == items.length - 1) {
             return 0;
+        } else if (index >= items.length) {
+            return index % items.length;
         }
         return index + 1;
     }
