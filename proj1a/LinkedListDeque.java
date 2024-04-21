@@ -6,18 +6,18 @@ public class LinkedListDeque<T> {
     private Node sentinel;
     private int size;
 
-    public class Node {
+    private class Node {
         private T item;
         private Node prev;
         private Node next;
 
-        public Node(T item, Node prev, Node next) {
+        private Node(T item, Node prev, Node next) {
             this.item = item;
             this.prev = prev;
             this.next = next;
         }
 
-        public Node(Node prev, Node next) {
+        private Node(Node prev, Node next) {
             this.prev = prev;
             this.next = next;
         }

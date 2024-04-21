@@ -1,6 +1,8 @@
-/** Second part of project1a
- * @author donny
+/**
+ * Second part of project1a
+ *
  * @param <T>
+ * @author donny
  */
 public class ArrayDeque<T> {
     private int size;
@@ -18,7 +20,7 @@ public class ArrayDeque<T> {
 
     private void resize(int newSize) {
         T[] newItems = (T[]) new Object[newSize];
-        if (newSize < items.length){
+        if (newSize < items.length) {
             if (nextFirst < nextLast) {
                 for (int i = nextFirst, j = 0; i < nextLast && j < size; i++, j++) {
                     newItems[j] = items[i];
@@ -34,14 +36,20 @@ public class ArrayDeque<T> {
             }
             nextFirst = newSize - 1;
             nextLast = size;
+        } else {
+            if (nextLast == 0) {
+                System.arraycopy(items, 0, newItems, 0, size);
+                nextFirst = newSize - 1;
+                nextLast = size;
             } else {
-            for (int i = 0; i < nextLast; i++) {
-                newItems[i] = items[i];
+                for (int i = 0; i < nextLast; i++) {
+                    newItems[i] = items[i];
+                }
+                for (int i = newSize - 1, j = size - 1; j > nextFirst; i--, j--) {
+                    newItems[i] = items[j];
+                }
+                nextFirst = size + nextFirst;
             }
-            for (int i = newSize - 1, j = size - 1; j > nextFirst; i--, j--) {
-                newItems[i] = items[j];
-            }
-            nextFirst = size + nextFirst;
         }
         items = newItems;
     }
@@ -126,34 +134,47 @@ public class ArrayDeque<T> {
         return index - 1;
     }
 
-    private  int plusOne(int index) {
+    private int plusOne(int index) {
         if (index >= items.length - 1) {
             return index % (items.length - 1);
         }
         return index + 1;
     }
-public static void main(String[] args) {
+
+    public static void main(String[] args) {
         ArrayDeque<Integer> test = new ArrayDeque<>();
-        test.addFirst(1);
-        test.addLast(2);
         test.addFirst(0);
-        test.addLast(3);
         test.addLast(4);
-        test.addLast(5);
+        test.addFirst(3);
+        test.addFirst(5);
         test.addLast(6);
-        test.addLast(7);
-        test.printDeque();
-        test.addLast(8);
-        test.removeFirst();
-        test.removeFirst();
-        test.printDeque();
         test.removeLast();
-        test.removeFirst();
-        test.printDeque();
-        System.out.print(test.get(2));
-        test.removeFirst();
         test.removeLast();
-        System.out.print(test.get(2));
+        test.addLast(10);
+        test.removeFirst();
+        test.addFirst(14);
+        test.addFirst(15);
+        test.addLast(16);
+        test.addLast(17);
+        test.addFirst(18);
+        test.addLast(19);
+        test.removeLast();
+        System.out.print(test.removeFirst());
+//        test.addLast(5);
+//        test.addLast(6);
+//        test.addLast(7);
+//        test.printDeque();
+//        test.addLast(8);
+//        test.removeFirst();
+//        test.removeFirst();
+//        test.printDeque();
+//        test.removeLast();
+//        test.removeFirst();
+//        test.printDeque();
+//        System.out.print(test.get(2));
+//        test.removeFirst();
+//        test.removeLast();
+//        System.out.print(test.get(2));
 
     }
 }
