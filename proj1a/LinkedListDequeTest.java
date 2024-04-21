@@ -19,7 +19,7 @@ public class LinkedListDequeTest {
 		return true;
 	}
 
-	/* Prints a nice message based on whether a test passed. 
+	/* Prints a nice message based on whether a test passed.
 	 * The \n means newline. */
 	public static void printTestStatus(boolean passed) {
 		if (passed) {
@@ -29,10 +29,10 @@ public class LinkedListDequeTest {
 		}
 	}
 
-	/** Adds a few things to the list, checking isEmpty() and size() are correct, 
-	  * finally printing the results. 
-	  *
-	  * && is the "and" operation. */
+	/** Adds a few things to the list, checking isEmpty() and size() are correct,
+	 * finally printing the results.
+	 *
+	 * && is the "and" operation. */
 	public static void addIsEmptySizeTest() {
 		System.out.println("Running add/isEmpty/Size test.");
 		LinkedListDeque<String> lld1 = new LinkedListDeque<String>();
@@ -56,7 +56,6 @@ public class LinkedListDequeTest {
 		lld1.printDeque();
 
 		printTestStatus(passed);
-
 	}
 
 	/** Adds an item, then removes an item, and ensures that dll is empty afterwards. */
@@ -77,7 +76,6 @@ public class LinkedListDequeTest {
 		passed = checkEmpty(true, lld1.isEmpty()) && passed;
 
 		printTestStatus(passed);
-
 	}
 
 	public static void main(String[] args) {
