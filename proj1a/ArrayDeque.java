@@ -192,8 +192,7 @@ public class ArrayDeque<T> {
 //        test.removeFirst();
 //        test.removeLast();
 //        System.out.print(test.get(2));
-
-    }
+//}
    }
 
 
