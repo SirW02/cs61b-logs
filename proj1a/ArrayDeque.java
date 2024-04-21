@@ -135,8 +135,9 @@ public class ArrayDeque<T> {
     }
 
     private int plusOne(int index) {
-        if (index >= items.length - 1) {
-            return index % (items.length - 1);
+        index %= items.length;
+        if (index == items.length - 1) {
+            return 0;
         }
         return index + 1;
     }
@@ -157,9 +158,8 @@ public class ArrayDeque<T> {
         test.addLast(16);
         test.addLast(17);
         test.addFirst(18);
-        test.addLast(19);
-        test.removeLast();
-        System.out.print(test.removeFirst());
+        System.out.println(test.get(2));
+
 //        test.addLast(5);
 //        test.addLast(6);
 //        test.addLast(7);
