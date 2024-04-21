@@ -18,13 +18,36 @@ public class ArrayDeque<T> {
 
     private void resize(int newSize) {
         T[] newItems = (T[]) new Object[newSize];
-        System.arraycopy(items, 0, newItems, 0, size);
+        if (newSize < items.length){
+            if (nextFirst < nextLast) {
+                for (int i = nextFirst, j = 0; i < nextLast && j < size; i++, j++) {
+                    newItems[j] = items[i];
+                }
+            } else if (nextFirst > nextLast) {
+                int j = 0;
+                for (int i = nextFirst + 1; j < items.length - nextFirst - 1; i++, j++) {
+                    newItems[j] = items[i];
+                }
+                for (int i = 0; j < size; i++, j++) {
+                    newItems[j] = items[i];
+                }
+            }
+            nextFirst = newSize - 1;
+            nextLast = size;
+            } else {
+            for (int i = 0; i < nextLast; i++) {
+                newItems[i] = items[i];
+            }
+            for (int i = newSize - 1, j = size - 1; j > nextFirst; i--, j--) {
+                newItems[i] = items[j];
+            }
+            nextFirst = size + nextFirst;
+        }
         items = newItems;
     }
 
     public void addFirst(T item) {
         if (size == items.length) {
-            nextFirst = size + nextLast - 1;
             resize(size * 2);
         }
         items[nextFirst] = item;
@@ -70,8 +93,12 @@ public class ArrayDeque<T> {
     }
 
     public void printDeque() {
-        for (T item : items) {
-            System.out.println(item);
+        int count = 0;
+        int ptr = plusOne(nextFirst);
+        while (count != size) {
+            System.out.print(items[ptr] + " ");
+            ptr = plusOne(ptr);
+            count++;
         }
     }
 
@@ -105,8 +132,31 @@ public class ArrayDeque<T> {
         }
         return index + 1;
     }
-}
+public static void main(String[] args) {
+        ArrayDeque<Integer> test = new ArrayDeque<>();
+        test.addFirst(1);
+        test.addLast(2);
+        test.addFirst(0);
+        test.addLast(3);
+        test.addLast(4);
+        test.addLast(5);
+        test.addLast(6);
+        test.addLast(7);
+        test.printDeque();
+        test.addLast(8);
+        test.removeFirst();
+        test.removeFirst();
+        test.printDeque();
+        test.removeLast();
+        test.removeFirst();
+        test.printDeque();
+        System.out.print(test.get(2));
+        test.removeFirst();
+        test.removeLast();
+        System.out.print(test.get(2));
 
+    }
+}
 
 
 
