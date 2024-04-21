@@ -142,23 +142,23 @@ public class ArrayDeque<T> {
         return index + 1;
     }
 
-    public static void main(String[] args) {
-        ArrayDeque<Integer> test = new ArrayDeque<>();
-        test.addFirst(0);
-        test.addLast(4);
-        test.addFirst(3);
-        test.addFirst(5);
-        test.addLast(6);
-        test.removeLast();
-        test.removeLast();
-        test.addLast(10);
-        test.removeFirst();
-        test.addFirst(14);
-        test.addFirst(15);
-        test.addLast(16);
-        test.addLast(17);
-        test.addFirst(18);
-        System.out.println(test.get(2));
+//    public static void main(String[] args) {
+//        ArrayDeque<Integer> test = new ArrayDeque<>();
+//        test.addFirst(0);
+//        test.addLast(4);
+//        test.addFirst(3);
+//        test.addFirst(5);
+//        test.addLast(6);
+//        test.removeLast();
+//        test.removeLast();
+//        test.addLast(10);
+//        test.removeFirst();
+//        test.addFirst(14);
+//        test.addFirst(15);
+//        test.addLast(16);
+//        test.addLast(17);
+//        test.addFirst(18);
+//        System.out.println(test.get(2));
 
 //        test.addLast(5);
 //        test.addLast(6);
