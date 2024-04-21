@@ -176,7 +176,7 @@ public class ArrayDeque<T> {
 //        test.removeLast();
 //        System.out.print(test.get(2));
 
-    }
+//    }
 }
 
 
