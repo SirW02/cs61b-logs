@@ -142,25 +142,25 @@ public class ArrayDeque<T> {
         return index + 1;
     }
 
-   public static void main(String[] args) {
-       ArrayDeque<Integer> test = new ArrayDeque<>();
-       test.addFirst(0);
-       test.addFirst(1);
-       test.addFirst(2);
-       test.addFirst(3);
-       test.addFirst(4);
-       test.addFirst(5);
-       test.addFirst(6);
-       test.addFirst(7);
-       test.addFirst(8);
-       test.removeFirst();
-       test.removeFirst();
-       test.removeFirst();
-       test.removeFirst();
-       test.removeFirst();
-       test.removeFirst();
-       System.out.println(test.removeFirst());
-       System.out.println(test.removeFirst());
+//   public static void main(String[] args) {
+//       ArrayDeque<Integer> test = new ArrayDeque<>();
+//       test.addFirst(0);
+//       test.addFirst(1);
+//       test.addFirst(2);
+//       test.addFirst(3);
+//       test.addFirst(4);
+//       test.addFirst(5);
+//       test.addFirst(6);
+//       test.addFirst(7);
+//       test.addFirst(8);
+//       test.removeFirst();
+//       test.removeFirst();
+//       test.removeFirst();
+//       test.removeFirst();
+//       test.removeFirst();
+//       test.removeFirst();
+//       System.out.println(test.removeFirst());
+//       System.out.println(test.removeFirst());
 //        test.addFirst(0);
 //        test.addLast(4);
 //        test.addFirst(3);
