@@ -1,4 +1,6 @@
-/** Second part of project1a
+/**
+ * Second part of project1a
+ *
  * @param <T>
  * @author donny
  */

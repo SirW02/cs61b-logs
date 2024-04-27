@@ -16,13 +16,13 @@ public class Palindrome {
             }
             if (!isPalindromeD(deque)) {
                 flag = false;
-            };
+            }
         }
         return flag;
     }
 
     private boolean isPalindromeD(Deque<Character> deque) {
-            return deque.removeFirst() == deque.removeLast();
+        return deque.removeFirst() == deque.removeLast();
     }
 
     public boolean isPalindrome(String word, CharacterComparator cc) {
