@@ -9,37 +9,22 @@ public class Palindrome {
 
     public boolean isPalindrome(String word) {
         Deque<Character> deque = wordToDeque(word);
-        boolean flag = true;
-        while (true) {
-            if (deque.size() < 2) {
-                break;
-            }
-            if (!isPalindromeD(deque)) {
-                flag = false;
+        while (deque.size() > 1) {
+            if (deque.removeFirst() != deque.removeLast()) {
+                return false;
             }
         }
-        return flag;
-    }
-
-    private boolean isPalindromeD(Deque<Character> deque) {
-        return deque.removeFirst() == deque.removeLast();
+        return true;
     }
 
     public boolean isPalindrome(String word, CharacterComparator cc) {
         Deque<Character> deque = wordToDeque(word);
-        boolean flag = true;
-        while (true) {
-            if (deque.size() < 2) {
-                break;
-            }
-            if (!isPalindromeD(deque, cc)) {
-                flag = false;
+        while (deque.size() > 1) {
+            if (!cc.equalChars(deque.removeFirst(), deque.removeLast())) {
+                return false;
             }
         }
-        return flag;
+        return true;
     }
 
-    private boolean isPalindromeD(Deque<Character> deque, CharacterComparator cc) {
-        return cc.equalChars(deque.removeFirst(), deque.removeLast());
-    }
 }
