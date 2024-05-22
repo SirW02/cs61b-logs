@@ -1,10 +1,12 @@
 // TODO: Make sure to make this class a part of the synthesizer package
-// package <package name>;
+package synthesizer;
+import synthesizer.AbstractBoundedQueue;
+
 import java.util.Iterator;
 
 //TODO: Make sure to make this class and all of its methods public
 //TODO: Make sure to make this class extend AbstractBoundedQueue<t>
-public class ArrayRingBuffer<T>  {
+public class ArrayRingBuffer<T> extends AbstractBoundedQueue <T> implements Iterable<T> {
     /* Index for the next dequeue or peek. */
     private int first;            // index for the next dequeue or peek
     /* Index for the next enqueue. */
@@ -21,6 +23,11 @@ public class ArrayRingBuffer<T>  {
         //       this.capacity should be set appropriately. Note that the local variable
         //       here shadows the field we inherit from AbstractBoundedQueue, so
         //       you'll need to use this.capacity to set the capacity.
+        this.capacity = capacity;
+        rb = (T[]) new Object[this.capacity];
+        first = 0;
+        last = 0;
+        fillCount = 0;
     }
 
     /**
@@ -30,6 +37,12 @@ public class ArrayRingBuffer<T>  {
      */
     public void enqueue(T x) {
         // TODO: Enqueue the item. Don't forget to increase fillCount and update last.
+        if (isFull()) {
+            throw new RuntimeException("Ring Buffer Overflow");
+        }
+        rb[last] = x;
+        last = (last + 1) % capacity;
+        fillCount++;
     }
 
     /**
@@ -39,6 +52,14 @@ public class ArrayRingBuffer<T>  {
      */
     public T dequeue() {
         // TODO: Dequeue the first item. Don't forget to decrease fillCount and update 
+        if (isEmpty()) {
+            throw new RuntimeException("Ring Buffer Underflow");
+        }
+        T x = rb[first];
+        rb[first] = null;
+        first = (first + 1) % capacity;
+        fillCount--;
+        return x;
     }
 
     /**
@@ -46,7 +67,33 @@ public class ArrayRingBuffer<T>  {
      */
     public T peek() {
         // TODO: Return the first item. None of your instance variables should change.
+        T x = rb[first];
+        return x;
     }
 
     // TODO: When you get to part 5, implement the needed code to support iteration.
+    public Iterator<T> iterator() {
+        return new ARBIterator();
+    }
+
+    private class ARBIterator implements Iterator<T>{
+        private int pos;
+        private int count;
+
+        public ARBIterator() {
+            pos = first;
+            count = 0;
+        }
+
+        public boolean hasNext() {
+            return count < fillCount;
+        }
+
+        public T next() {
+            T returnItem = rb[pos];
+            pos = (pos + 1) % capacity;
+            count++;
+            return returnItem;
+        }
+    }
 }
