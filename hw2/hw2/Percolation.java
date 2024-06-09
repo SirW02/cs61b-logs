@@ -24,7 +24,7 @@ public class Percolation {
             sites1.union(xyTo1D(0, i), this.topsite);
         }
         for (int i = 0; i < N; i++) {
-            sites1.union(xyTo1D(N -1, i), bottomSite);
+            sites1.union(xyTo1D(N - 1, i), bottomSite);
         }
 
         sites2 = new WeightedQuickUnionUF(N * N + 1);
@@ -40,7 +40,10 @@ public class Percolation {
         }
     }
 
-    private  int xyTo1D(int i, int j) {
+    public static void main(String[] args) {
+    }
+
+    private int xyTo1D(int i, int j) {
         return i * N + j;
     }
 
@@ -56,7 +59,7 @@ public class Percolation {
 
     public void open(int row, int col) {
         if (row < 0 || row >= N || col < 0 || col >= N) {
-            throw new IllegalArgumentException();
+            throw new IndexOutOfBoundsException();
         }
         if (isOpen(row, col)) {
             return;
@@ -71,14 +74,14 @@ public class Percolation {
 
     public boolean isOpen(int row, int col) {
         if (row < 0 || row >= N || col < 0 || col >= N) {
-            throw new IllegalArgumentException();
+            throw new IndexOutOfBoundsException();
         }
         return status[row][col];
     }
 
     public boolean isFull(int row, int col) {
         if (row < 0 || row >= N || col < 0 || col >= N) {
-            throw new IllegalArgumentException();
+            throw new IndexOutOfBoundsException();
         }
         if (status[row][col]) {
             return sites2.connected(xyTo1D(row, col), topsite);
@@ -96,6 +99,4 @@ public class Percolation {
         }
         return sites1.connected(topsite, bottomSite);
     }
-
-    public static void main(String[] args) {}
 }

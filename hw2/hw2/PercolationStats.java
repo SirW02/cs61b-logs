@@ -1,6 +1,7 @@
 package hw2;
 
 import static edu.princeton.cs.introcs.StdRandom.uniform;
+
 import edu.princeton.cs.algs4.StdStats;
 
 public class PercolationStats {
@@ -8,12 +9,13 @@ public class PercolationStats {
     private int T;
     private PercolationFactory pf;
     private Percolation pc;
-    private double[] fraction;;
+    private double[] fraction;
 
     public PercolationStats(int N, int T, PercolationFactory pf) {
         this.N = N;
         this.T = T;
         this.pf = pf;
+        fraction = new double[T];
 
         if (N <= 0 || T <= 0) {
             throw new IllegalArgumentException();
@@ -21,15 +23,13 @@ public class PercolationStats {
 
         for (int i = 0; i < T; i++) {
             pc = pf.make(N);
-            int count = 0;
             while (!pc.percolates()) {
-                int x,y;
+                int x, y;
                 x = uniform(N);
                 y = uniform(N);
                 pc.open(x, y);
-                count++;
             }
-            fraction[i] = (double) count / (N * N);
+            fraction[i] = (double) pc.numberOfOpenSites() / (N * N);
         }
     }
 
